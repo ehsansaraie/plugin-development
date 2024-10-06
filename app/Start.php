@@ -2,6 +2,10 @@
 
 namespace FalconBaseServices;
 
+use FalconBaseServices\Services\AdminDisplay;
+use FalconBaseServices\Services\CustomMetaBox;
+use FalconBaseServices\Services\CustomPostType;
+
 class Start
 {
     public function __construct()
@@ -11,8 +15,20 @@ class Start
         $this->filterHandler();
     }
 
-    public function actionHandler() {}
-
     public function filterHandler() {}
 
+    public function actionHandler() 
+    {
+        // Custom Post Type
+        $customPostTypeService = new CustomPostType();
+        $customPostTypeService->register();
+        
+        // Custom MetaBox
+        $CustomMetaBoxService = new CustomMetaBox();
+        $CustomMetaBoxService->register();
+
+        // Admin Display
+        $adminDisplayService = new AdminDisplay();
+        $adminDisplayService->register();
+    }
 }
